@@ -1,0 +1,200 @@
+html, body {
+  margin: 0;
+  padding: 0;
+
+  font-size: 16px;
+  line-height: 29px;
+}
+
+body {
+  font-family: 'Open Sans';
+  font-size: 1em;
+  line-height: 1.8125em;
+}
+
+// Breakpoints
+$breakpoint-small: 33.75em; // 540px
+$breakpoint-medium: 60em; // 720px
+$breakpoint-large: 80em; // 1280px
+
+@mixin sm() {
+  @media (max-width: $breakpoint-small) {
+    @content;
+  }
+}
+
+@mixin md() {
+  @media (min-width: $breakpoint-small) and (max-width: $breakpoint-medium) {
+    @content;
+  }
+}
+
+@mixin lg() {
+  @media (min-width: $breakpoint-medium) and (max-width: $breakpoint-large) {
+    @content;
+  }
+}
+
+@mixin xlg() {
+  @media (min-width: $breakpoint-large) {
+    @content;
+  }
+}
+
+// typography
+h1 {
+  @include sm() {
+    font-size: 2.75em;
+    line-height: 1em;
+    margin-top: 0.5em;
+    margin-bottom: 1em;
+  }
+
+  font-size: 5.8125em;
+  line-height: 1.24731183em;
+  margin-top: 0.31182796em;
+  margin-bottom: 0.62365592em;
+}
+
+h2 {
+  @include sm() {
+    font-size: 1.9375em;
+    line-height: 1.41935484em;
+    margin-top: 0.70967742em;
+    margin-bottom: 0.70967742em;
+  }
+
+  font-size: 3.25em;
+  line-height: 1.11538462em;
+  margin-top: 0.55769231em;
+  margin-bottom: 0.55769231em;
+}
+
+h3 {
+  @include sm() {
+    font-size: 1.375em;
+    line-height: 1em;
+    margin-top: 1em;
+    margin-bottom: 0em;
+  }
+
+  font-size: 1.8125em;
+  line-height: 1em;
+  margin-top: 1em;
+  margin-bottom: 0em;
+}
+
+h4 {
+  font-size: 1em;
+  line-height: 1.8125em;
+  margin-top: 1.8125em;
+  margin-bottom: 0em;
+}
+
+h5 {
+  font-size: 1em;
+  line-height: 1.8125em;
+  margin-top: 1.8125em;
+  margin-bottom: 0em;
+}
+
+p, ul, ol, pre, table, blockquote {
+  margin-top: 0em;
+  margin-bottom: 1.8125em;
+}
+
+ul ul, ol ol, ul ol, ol ul {
+  margin-top: 0em;
+  margin-bottom: 0em;
+}
+
+.header__spacer {
+  padding-top: 4rem;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.lg__reverse {
+  @include lg() {
+    flex-direction: row-reverse;
+  }
+  @include xlg() {
+    flex-direction: row-reverse;
+  }
+}
+
+.fixed {
+  box-sizing: border-box;
+  @include sm() {
+    width: 100%;
+    padding-left: 1em;
+    padding-right: 1em;
+  }
+
+  @include md() {
+    width: 100%;
+    padding-left: 1em;
+    padding-right: 1em;
+  }
+
+  @include lg() {
+    width: 100%;
+    padding-left: 1.5em;
+    padding-right: 1.5em;
+  }
+
+  @include xlg() {
+    width: $breakpoint-large;
+    margin: 0 auto;
+    padding-left: 1.5em;
+    padding-right: 1.5em;
+  }
+}
+
+.fluid {
+  display: flex;
+  width: 100vw;
+}
+
+@mixin makeCol($size, $columns, $gutter) {
+  @for $i from 1 through $columns {
+    .#{$size}__#{$i} {
+      width: calc((#{$i} / #{$columns} * 100%) - #{$gutter} * (#{$i} / #{$columns}) * 1px);
+      
+      @if $size == 'sm' {
+        margin: 0;
+      } @else {
+        margin-right: $gutter * 1px;
+      }
+    }
+
+    .#{$size}__#{$i}:last-child {
+      margin-right: 0;
+    }
+  }
+
+  @for $i from 1 through $columns {
+    .offset__#{$size}__#{$i} {
+      margin-left: calc(#{$i} / #{$columns} * 100%);
+    }
+  }
+}
+
+@include sm() {
+  @include makeCol('sm', 12, 16);
+}
+
+@include md() {
+  @include makeCol('md', 12, 16);
+}
+
+@include lg() {
+  @include makeCol('lg', 12, 24);
+}
+
+@include xlg() {
+  @include makeCol('xlg', 12, 24);
+}

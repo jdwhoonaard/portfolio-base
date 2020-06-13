@@ -1,0 +1,23 @@
+.gridView {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  padding: 4em 0;
+  
+  @media screen and (max-width: 1328px) {
+    margin: 0 auto;
+    max-width: 959px;
+  }
+}
+
+.gridView__card {
+  @media screen and (max-width: 672px) {
+    margin-bottom: 2em;
+  }
+}
+
+.gridView__card:nth-child(2n) {
+  @media screen and (min-width: 672px) {
+    margin-top: 2em;
+  }
+}

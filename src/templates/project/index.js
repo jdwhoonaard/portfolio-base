@@ -1,94 +1,47 @@
 import React from "react";
 import { motion } from 'framer-motion';
-import './index.scss';
 
+import ProjectHeader from "../../components/projectHeader";
 import SEO from "../../components/seo";
 
-import { BLOCKS, MARKS } from '@contentful/rich-text-types';
-import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
+const ProjectTemplate = ({ pageContext }) => {
 
-const options = {
-  renderMark: {
-    [MARKS.BOLD]: text => <strong>{text}</strong>,
-  },
-  renderNode: {
-    [BLOCKS.PARAGRAPH]: children => <p>{children}</p>,
-  },
-  renderNode: {
-    [BLOCKS.EMBEDDED_ASSET]: node => (
-      node.data.target.fields
-        ? <img key={node.data.target.fields.file['en-US'].url} alt='Project content' src={node.data.target.fields.file['en-US'].url} style={{ maxWidth: '100%' }} />
-        : <i>No image available</i>
-    )
-  }
-};
-
-const container = {
-  hidden: {
-    opacity: 0,
-  },
-  visible: {
-    opacity: 1,
-    transition: {
-      when: "beforeChildren",
-      staggerChildren: 0.1
+  const headerData = {
+    main: {
+      title: pageContext.title,
+      subtitle: 'A cool looking phone',
+      image: pageContext.coverImage.fixed.srcWebp,
+      tags: pageContext.tags,
+      client: 'Avans Hogeschool',
+      year: '2018'
+    },
+    sub: {
+      introduction: pageContext.introduction,
+      teammembers: ['jan', 'piet']
     }
   }
-};
 
-const ProjectTemplate = ({ pageContext }) => {
-  console.log(pageContext)
   return (
     <motion.div
       key="wrapper"
-      variants={container}
+      variants={{
+        hidden: {
+          opacity: 0,
+        },
+        visible: {
+          opacity: 1,
+          transition: {
+            when: "beforeChildren",
+            staggerChildren: 0.1
+          }
+        }
+      }}
       initial="hidden"
       animate="visible"
       exit="hidden"
     >
-      <img className="project__header__icon" alt="cover" src={pageContext.coverImage.fixed.srcWebp} />
-      <h1>{pageContext.title}</h1>
-      {pageContext.tags !== null ? (
-        <ul>{pageContext.tags.map(tag => <li key={tag}>{tag}</li>)}</ul>
-      ) : null}
 
-      {pageContext.introduction !== null ? (
-        <div className="textWrapper">{documentToReactComponents(pageContext.introduction.json, options)}</div>
-      ) : null}
-
-      {pageContext.endProduct !== null ? (
-        <div>{pageContext.endProduct.map(image => (
-          <img alt="End product" key={image.id} src={image.fixed.srcWebp} />
-        ))}</div>
-      ) : null}
-
-      {pageContext.goal !== null ? (
-        <div className="textWrapper">{documentToReactComponents(pageContext.goal.json, options)}</div>
-      ) : null}
-
-      {pageContext.research !== null ? (
-        <div className="textWrapper">{documentToReactComponents(pageContext.research.json, options)}</div>
-      ) : null}
-
-      {pageContext.researchAssets !== null ? (
-        <div>{pageContext.researchAssets.map(image => (
-          <img alt="End product" key={image.id} src={image.fixed.srcWebp} />
-        ))}</div>
-      ) : null}
-
-      {pageContext.concepting !== null ? (
-        <div className="textWrapper">{documentToReactComponents(pageContext.concepting.json, options)}</div>
-      ) : null}
-
-      {pageContext.conceptingAssets !== null ? (
-        <div>{pageContext.conceptingAssets.map(image => (
-          <img alt="End product" key={image.id} src={image.fixed.srcWebp} />
-        ))}</div>
-      ) : null}
-
-      {pageContext.conclusion !== null ? (
-        <div className="textWrapper">{documentToReactComponents(pageContext.conclusion.json, options)}</div>
-      ) : null}
+      <ProjectHeader main={headerData.main} sub={headerData.sub} />
 
       <SEO title={pageContext.title} />
     </motion.div >

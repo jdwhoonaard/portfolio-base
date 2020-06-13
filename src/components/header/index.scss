@@ -1,0 +1,20 @@
+.header__outer {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 97;
+}
+
+.header {
+  height: 4rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header__branding {
+  color: black;
+  text-decoration: none;
+  z-index: 99;
+}

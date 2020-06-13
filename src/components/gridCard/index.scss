@@ -1,0 +1,23 @@
+.gridCard {
+  width: 320px;
+  height: 480px;
+  position: relative;
+}
+
+.gridCard__inner {
+  width: inherit;
+  height: inherit;
+  background-color: lightblue;
+  transform: scale(0.9);
+}
+
+.gridCard:hover {
+  transform: scale(1);
+}
+
+.gridCard__info {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  right: 16px;
+}
