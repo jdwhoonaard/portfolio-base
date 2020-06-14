@@ -2,17 +2,17 @@ import React from "react"
 import PropTypes from "prop-types"
 import './index.scss';
 
-const Row = ({ className, children }) => {
+const Grid = ({ className, children }) => {
   return (
-    <div className={`gridRow ${className}`}>
+    <div className={`grid ${className}`}>
       {children}
     </div>
   )
 }
 
-Row.propTypes = {
+Grid.propTypes = {
   className: PropTypes.array,
   children: PropTypes.node.isRequired,
 }
 
-export default Row
+export default Grid

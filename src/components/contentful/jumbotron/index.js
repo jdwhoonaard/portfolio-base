@@ -4,39 +4,37 @@ import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 import './index.scss'
 
 const Jumbotron = ({ data }) => (
-  <div className="project__header">
+  <>
+    <div className="contentful__jumbotron__titleSection grid__row fixed">
 
-    <div className="project__header__main row fixed">
-
-      <div className="col offset__md__1 md__6 offset__lg__1 lg__5 offset__xlg__1 xlg__5">
+      <div className="md-offset-1 md-6 lg-offset-1 lg-5 xl-offset-1 xl-5">
         <h1>{data.title}</h1>
         <h2>{data.subtitle}</h2>
         <span>{data.tags[0] ? data.tags.join(', ') : null}</span>
       </div>
-      <div className="col sm__4 offset__md__1 md__6 lg__5 xlg__5">
-        <img className="project__header_cover" alt={`${data.title} cover`} src={data.image.file.url} />
+      <div className="sm-4 md-offset-1 md-6 lg-5 xl-5">
+        <img className="contentful__jumbotron__cover" alt={`${data.title} cover`} src={data.image.file.url} />
       </div>
 
     </div>
 
-    <div className="project__header_sub row fixed">
+    <div className="contentful__jumbotron__metaSection grid__row fixed">
 
-      <div className="col offset__md__1 md__6 offset__lg__1 lg__7 offset__xlg__1 xlg__7" >
+      <div className="md-offset-1 md-6 lg-offset-1 lg-7 xl-offset-1 xl-7" >
         <h4>A small title</h4>
         {data.description !== null ? documentToReactComponents(data.description.json) : null}
       </div>
-      <div className="col offset__md__1 md__6 lg__3 xlg__3">
+      <div className="md-offset-1 md-6 lg-3 xl-3">
         <h4>Teammembers</h4>
         {data.teammembers[0] ? (
-          <ul className="teamlist">
+          <ul className="contentful__jumbotron__teamlist">
             {data.teammembers.map((teammember) => <li key={teammember.fullName} className="teamlist__item">{teammember.fullName}</li>)}
           </ul>
         ) : null}
       </div>
 
     </div>
-
-  </div>
+  </>
 )
 
 export default Jumbotron;

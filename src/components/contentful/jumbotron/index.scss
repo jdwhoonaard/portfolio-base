@@ -1,14 +1,5 @@
-.project__header {
-  padding-top: 4em;
-}
-
-.project__header_cover {
-  max-width: 100%;
-}
-
-.project__header__main {
-  min-height: 100vh;
-  display: flex;
+.contentful__jumbotron__titleSection {
+  min-height: 80vh;
 
   @media screen and (min-width: 769px) {
     align-items: center;
@@ -22,6 +13,15 @@
   }
 }
 
-.project__header__sub {
+.contentful__jumbotron__cover {
+  max-width: 100%;
+}
 
+.contentful__jumbotron__metaSection {
+}
+
+.contentful__jumbotron__teamlist {
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }

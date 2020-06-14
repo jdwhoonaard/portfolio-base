@@ -2,6 +2,7 @@ import React from "react";
 import { motion } from 'framer-motion';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 
+import Grid from "../../components/grid";
 import Jumbotron from "../../components/contentful/jumbotron";
 import Text from "../../components/contentful/text";
 import Quote from "../../components/contentful/quote";
@@ -43,18 +44,20 @@ const ProjectTemplate = ({ pageContext }) => {
       exit="hidden"
     >
 
-      <Jumbotron data={headerData} />
+      <Grid className="fixed header__spacer">
+        <Jumbotron data={headerData} />
 
-      {pageContext.contentList.map(data => {
-        const type = data.internal.type;
-        console.log(data)
+        {pageContext.contentList.map(data => {
+          const type = data.internal.type;
+          console.log(data)
 
-        if (type === 'ContentfulGenericTextField') {
-          return <Text data={data} />
-        } else if (type === 'ContentfulQuote') {
-          return <Quote data={data} />
-        }
-      })}
+          if (type === 'ContentfulGenericTextField') {
+            return <Text data={data} />
+          } else if (type === 'ContentfulQuote') {
+            return <Quote data={data} />
+          }
+        })}
+      </Grid>
 
       <SEO title={pageContext.title} />
     </motion.div >

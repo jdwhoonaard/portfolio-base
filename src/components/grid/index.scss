@@ -1,0 +1,135 @@
+// GRID
+
+$breakpoint-maxSm: 540px;
+$breakpoint-minMed: 541px;
+$breakpoint-maxMed: 768px;
+$breakpoint-minLg: 769px;
+$breakpoint-maxLg: 1280px;
+$breakpoint-minXl: 1281px;
+
+@mixin sm() {
+  @media (max-width: $breakpoint-maxSm) {
+    @content;
+  }
+}
+
+@mixin md() {
+  @media (min-width: $breakpoint-minMed) and (max-width: $breakpoint-maxMed) {
+    @content;
+  }
+}
+
+@mixin lg() {
+  @media (min-width: $breakpoint-minLg) and (max-width: $breakpoint-maxLg) {
+    @content;
+  }
+}
+
+@mixin xl() {
+  @media (min-width: $breakpoint-minXl) {
+    @content;
+  }
+}
+
+.fixed {
+  box-sizing: border-box;
+  @include sm() {
+    width: 100%;
+    padding-left: 1em;
+    padding-right: 1em;
+  }
+
+  @include md() {
+    width: 100%;
+    padding-left: 1em;
+    padding-right: 1em;
+  }
+
+  @include lg() {
+    width: 100%;
+    padding-left: 1.5em;
+    padding-right: 1.5em;
+  }
+
+  @include xl() {
+    box-sizing: content-box;
+    width: $breakpoint-maxLg;
+    margin: 0 auto;
+    padding-left: 1.5em;
+    padding-right: 1.5em;
+  }
+}
+
+.fluid {
+  display: flex;
+  width: 100vw;
+}
+
+.header__spacer {
+  padding-top: 4rem;
+}
+
+// ROW
+.grid__row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.columns {
+  flex-direction: column;
+}
+
+// CARDS
+
+.grid__card {
+  @media screen and (max-width: 672px) {
+    margin-bottom: 2em;
+  }
+}
+
+.grid__card:nth-child(2n) {
+  @media screen and (min-width: 672px) {
+    margin-top: 2em;
+  }
+}
+
+// COLUMNS
+
+@mixin makeCol($size, $columns, $gutter) {
+  @for $i from 1 through $columns {
+    .#{$size}-#{$i} {
+      width: calc((#{$i} / #{$columns} * 100%) - #{$gutter} * 1px);
+      @if $size == 'sm' {
+        margin: 0;
+      } @else {
+        margin-right: $gutter * 1px;
+      }
+    }
+
+    .#{$size}-#{$i}:last-child {
+      margin-right: 0;
+    }
+  }
+
+  @for $i from 1 through $columns {
+    .#{$size}-offset-#{$i} {
+      margin-left: calc(#{$i} / #{$columns} * 100%);
+    }
+  }
+}
+
+@include sm() {
+  @include makeCol('sm', 4, 16);
+}
+
+@include md() {
+  @include makeCol('md', 8, 16);
+}
+
+@include lg() {
+  @include makeCol('lg', 12, 24);
+}
+
+@include xl() {
+  @include makeCol('xl', 12, 24);
+}

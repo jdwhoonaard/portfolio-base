@@ -3,7 +3,7 @@ import { Link } from "gatsby"
 import { motion } from 'framer-motion';
 
 import SEO from "../components/seo"
-import Row from "../components/row"
+import Grid from "../components/grid"
 import Card from "../components/card"
 
 const featured = [
@@ -45,21 +45,26 @@ const IndexPage = () => (
     exit="hidden"
   >
     <SEO title="Home" />
-    <div className="fixed header__spacer">
-      <h1>Frontend<br />Developer,</h1>
-      <h2>UX Designer &<br />Coffee Afficionado</h2>
-    </div>
-    <div className="fixed">
-      <Row>
+    <Grid className="fixed header__spacer">
+      <div className="grid__row">
+        <div className="sm-4 md-8 lg-12 xl-12">
+          <h1>Frontend<br />Developer,</h1>
+          <h2>UX Designer &<br />Coffee Afficionado</h2>
+        </div>
+      </div>
+
+      <div className="grid__row">
         {
           featured.map(card => (
-            <Link className="gridView__card" key={card.url} to={card.url}>
-              <Card title={card.title} />
-            </Link>
+            <div className="sm-4 md-2 lg-3 xl-3">
+              <Link className="" key={card.url} to={card.url}>
+                <Card title={card.title} />
+              </Link>
+            </div>
           ))
         }
-      </Row>
-    </div>
+      </div>
+    </Grid>
   </motion.div >
 )
 

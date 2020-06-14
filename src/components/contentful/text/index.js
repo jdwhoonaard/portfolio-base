@@ -5,15 +5,20 @@ import './index.scss'
 
 
 const Text = ({ data }) => (
-  <div className="project__genericText">
-
-    <div className="project__genericText row fixed">
-      <div className="col offset__md__1 md__6 offset__lg__1 lg__7 offset__xlg__1 xlg__7">
-        {documentToReactComponents(data.body.json)}
-      </div>
+  <div className="contentful__text grid__row fixed">
+    <div className="md-6 lg-5 xl-5 md-offset-1 lg-offset-1 xl-offset-1">
+      {documentToReactComponents(data.body.json)}
     </div>
-
-  </div>
+    {
+      data.images.map((image, i) => {
+        return (
+          <div className={`md-6 lg-5 xl-5 ${i % 2 == 1 ? 'md-offset-1 lg-offset-1 xl-offset-1' : ''}`}>
+            <img className="contentful__text__image" src={image.file.url} />
+          </div>
+        )
+      })
+    }
+  </div >
 )
 
 export default Text;
