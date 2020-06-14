@@ -2,9 +2,9 @@ import React from "react";
 import { motion } from 'framer-motion';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 
-import ProjectHeader from "../../components/projectHeader";
-import ProjectText from "../../components/projectText";
-import ProjectQuote from "../../components/projectQuote";
+import Jumbotron from "../../components/contentful/jumbotron";
+import Text from "../../components/contentful/text";
+import Quote from "../../components/contentful/quote";
 import SEO from "../../components/seo";
 
 import './index.scss'
@@ -43,16 +43,16 @@ const ProjectTemplate = ({ pageContext }) => {
       exit="hidden"
     >
 
-      <ProjectHeader data={headerData} />
+      <Jumbotron data={headerData} />
 
       {pageContext.contentList.map(data => {
         const type = data.internal.type;
         console.log(data)
 
         if (type === 'ContentfulGenericTextField') {
-          return <ProjectText data={data} />
+          return <Text data={data} />
         } else if (type === 'ContentfulQuote') {
-          return <ProjectQuote data={data} />
+          return <Quote data={data} />
         }
       })}
 

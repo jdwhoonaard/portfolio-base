@@ -4,7 +4,7 @@ import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 import './index.scss'
 
 
-const ProjectText = ({ data }) => (
+const Quote = ({ data }) => (
   <div className="project__genericQuote">
 
     <div className="project__genericQuote row fixed">
@@ -17,4 +17,4 @@ const ProjectText = ({ data }) => (
   </div>
 )
 
-export default ProjectText;
+export default Quote;

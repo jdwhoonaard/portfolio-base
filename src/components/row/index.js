@@ -2,16 +2,17 @@ import React from "react"
 import PropTypes from "prop-types"
 import './index.scss';
 
-const GridView = ({ children }) => {
+const Row = ({ className, children }) => {
   return (
-    <div className="gridView">
+    <div className={`gridRow ${className}`}>
       {children}
     </div>
   )
 }
 
-GridView.propTypes = {
+Row.propTypes = {
+  className: PropTypes.array,
   children: PropTypes.node.isRequired,
 }
 
-export default GridView
+export default Row

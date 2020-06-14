@@ -3,7 +3,7 @@ import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 
 import './index.scss'
 
-const ProjectHeader = ({ data }) => (
+const Jumbotron = ({ data }) => (
   <div className="project__header">
 
     <div className="project__header__main row fixed">
@@ -39,4 +39,4 @@ const ProjectHeader = ({ data }) => (
   </div>
 )
 
-export default ProjectHeader;
+export default Jumbotron;

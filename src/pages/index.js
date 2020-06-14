@@ -3,8 +3,8 @@ import { Link } from "gatsby"
 import { motion } from 'framer-motion';
 
 import SEO from "../components/seo"
-import GridView from "../components/gridView"
-import GridCard from "../components/gridCard"
+import Row from "../components/row"
+import Card from "../components/card"
 
 const featured = [
   {
@@ -50,15 +50,15 @@ const IndexPage = () => (
       <h2>UX Designer &<br />Coffee Afficionado</h2>
     </div>
     <div className="fixed">
-      <GridView>
+      <Row>
         {
           featured.map(card => (
             <Link className="gridView__card" key={card.url} to={card.url}>
-              <GridCard title={card.title} />
+              <Card title={card.title} />
             </Link>
           ))
         }
-      </GridView>
+      </Row>
     </div>
   </motion.div >
 )
