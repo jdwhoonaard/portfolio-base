@@ -1,0 +1,27 @@
+.project__header {
+  padding-top: 4em;
+}
+
+.project__header_cover {
+  max-width: 100%;
+}
+
+.project__header__main {
+  min-height: 100vh;
+  display: flex;
+
+  @media screen and (min-width: 769px) {
+    align-items: center;
+  }
+  
+  @media screen and (max-width: 768px) {
+    flex-direction: column-reverse;
+    div {
+      margin-right: 0;
+    }
+  }
+}
+
+.project__header__sub {
+
+}

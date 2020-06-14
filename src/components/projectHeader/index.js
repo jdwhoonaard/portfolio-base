@@ -1,71 +1,42 @@
 import React from "react";
-
-import { BLOCKS, MARKS } from '@contentful/rich-text-types';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 
-const options = {
-  renderMark: {
-    [MARKS.BOLD]: text => <strong>{text}</strong>,
-  },
-  renderNode: {
-    [BLOCKS.PARAGRAPH]: children => <p>{children}</p>
-  },
-  renderNode: {
-    [BLOCKS.EMBEDDED_ASSET]: node => (
-      node.data.target.fields
-        ? <img key={node.data.target.fields.file['en-US'].url} alt='Project content' src={node.data.target.fields.file['en-US'].url} style={{ maxWidth: '100%' }} />
-        : <i>No image available</i>
-    )
-  }
-};
+import './index.scss'
 
+const ProjectHeader = ({ data }) => (
+  <div className="project__header">
 
-const ProjectHeader = ({ main, sub }) => (
-  <>
-    <div className="row fixed lg__reverse" style={{
-      paddingTop: '4rem',
-      minHeight: '100vh',
-      display: "flex",
-      alignItems: 'center'
-    }}>
-      <div className="sm__12 offset__md__1 md__10 lg__5 xlg__5">
-        <img alt="cover" src={main.image} style={{ maxWidth: '100%' }} />
+    <div className="project__header__main row fixed">
+
+      <div className="col offset__md__1 md__6 offset__lg__1 lg__5 offset__xlg__1 xlg__5">
+        <h1>{data.title}</h1>
+        <h2>{data.subtitle}</h2>
+        <span>{data.tags[0] ? data.tags.join(', ') : null}</span>
       </div>
-      <div className="sm__12 offset__md__2 md__8 lg__6 xlg__6">
-        <h1>{main.title}</h1>
-        <h2>{main.subtitle}</h2>
-        <span>
-          {main.tags[0] ? main.tags.join(', ') : null}
-        </span>
+      <div className="col sm__4 offset__md__1 md__6 lg__5 xlg__5">
+        <img className="project__header_cover" alt={`${data.title} cover`} src={data.image.file.url} />
       </div>
+
     </div>
 
-    <div className="row fixed" style={{
-      padding: '2rem 0',
-      borderTop: '1px solid darkgrey'
-    }}>
-      <div className="sm__12 offset__md__2 md__8 offset__lg__1 lg__7 offset__xlg__1 xlg__6" >
+    <div className="project__header_sub row fixed">
+
+      <div className="col offset__md__1 md__6 offset__lg__1 lg__7 offset__xlg__1 xlg__7" >
         <h4>A small title</h4>
-        {sub.introduction !== null ? (
-          <div className="textWrapper">
-            {
-              documentToReactComponents(
-                sub.introduction.json,
-                { options }
-              )
-            }
-          </div>
-        ) : null}
+        {data.description !== null ? documentToReactComponents(data.description.json) : null}
       </div>
-      <div className="sm__12 offset__md__2 md__8 lg__3 xlg__3">
+      <div className="col offset__md__1 md__6 lg__3 xlg__3">
         <h4>Teammembers</h4>
-        {sub.teammembers[0] ? (
-          <ul className="taglist">{sub.teammembers.map(teammember => <li key={teammember} className="taglist__item">{teammember}</li>)}</ul>
+        {data.teammembers[0] ? (
+          <ul className="teamlist">
+            {data.teammembers.map((teammember) => <li key={teammember.fullName} className="teamlist__item">{teammember.fullName}</li>)}
+          </ul>
         ) : null}
       </div>
+
     </div>
 
-  </>
+  </div>
 )
 
 export default ProjectHeader;
