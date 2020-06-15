@@ -43,16 +43,16 @@ const ProjectTemplate = ({ pageContext }) => {
       <Grid className="fixed header__spacer">
         <Jumbotron data={headerData} />
 
-        {pageContext.contentList.map(data => {
-          const type = data.internal.type;
-          console.log(data)
+        {pageContext.contentList.map(item => {
+          const type = item.internal.type;
+          console.log(item)
 
           if (type === 'ContentfulContentTextLeft') {
-            return <Text data={data} modifier="left" />
+            return <Text render={item} modifier="left" />
           } else if (type === 'ContentfulContentTextRight') {
-            return <Text data={data} modifier="right" />
+            return <Text render={item} modifier="right" />
           } else if (type === 'ContentfulContentTextCentered') {
-            return <Text data={data} modifier="centered" />
+            return <Text render={item} modifier="centered" />
           }
         })}
       </Grid>

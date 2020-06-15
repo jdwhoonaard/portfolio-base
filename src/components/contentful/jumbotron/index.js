@@ -13,7 +13,7 @@ const Jumbotron = ({ data }) => (
         <span>{data.tags[0] ? data.tags.join(', ') : null}</span>
       </div>
       <div className="md-offset-1 md-6 lg-6 xl-5">
-        <img className="contentful__jumbotron__cover" alt={`${data.title} cover`} src={data.image.file.url} />
+        <img className="contentful__jumbotron__cover" alt={`${data.title} cover`} src={data.image.sizes.src} />
       </div>
 
     </div>

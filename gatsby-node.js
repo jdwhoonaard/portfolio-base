@@ -10,8 +10,9 @@ exports.createPages = ({ graphql, actions }) => {
         nodes {
           url
           image {
-            file {
-              url
+            sizes(maxWidth: 640) {
+              src
+              srcSet
             }
           }
           title
@@ -41,8 +42,10 @@ exports.createPages = ({ graphql, actions }) => {
                 json
               }
               image {
-                file {
-                  url
+                id
+                sizes(maxWidth: 1280) {
+                  src
+                  srcSet
                 }
               }
             }
@@ -54,8 +57,10 @@ exports.createPages = ({ graphql, actions }) => {
                 json
               }
               image {
-                file {
-                  url
+                id
+                sizes(maxWidth: 1280) {
+                  src
+                  srcSet
                 }
               }
             }
@@ -64,8 +69,10 @@ exports.createPages = ({ graphql, actions }) => {
                 type
               }
               images {
-                file {
-                  url
+                id
+                sizes(maxWidth: 1280) {
+                  src
+                  srcSet
                 }
               }
             }
