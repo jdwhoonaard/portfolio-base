@@ -6,7 +6,7 @@ exports.createPages = ({ graphql, actions }) => {
 
   return graphql(`
     query pageQueries {
-      allContentfulTemplatePage1 {
+      allContentfulTemplateProject {
         nodes {
           url
           image {
@@ -25,37 +25,49 @@ exports.createPages = ({ graphql, actions }) => {
             fullName
           }
           contentList {
-            ... on ContentfulGenericTextField {
+            ... on ContentfulContentTextCentered {
               internal {
                 type
               }
               body {
                 json
               }
-              images {
-                file {
-                  url
-                }
-              }
             }
-            ... on ContentfulImageCarousel {
+            ... on ContentfulContentTextLeft {
               internal {
                 type
               }
-              images {
-                file {
-                  url
-                }
-              }
-            }
-            ... on ContentfulQuote {
-              internal {
-                type
-              }
-              quote {
+              body {
                 json
               }
-              source
+              image {
+                file {
+                  url
+                }
+              }
+            }
+            ... on ContentfulContentTextRight {
+              internal {
+                type
+              }
+              body {
+                json
+              }
+              image {
+                file {
+                  url
+                }
+              }
+            }
+            ... on ContentfulContentImageGroup {
+              internal {
+                type
+              }
+              images {
+                file {
+                  url
+                }
+              }
             }
           }
         }
@@ -65,9 +77,8 @@ exports.createPages = ({ graphql, actions }) => {
     if (result.errors) {
       throw result.errors
     }
-    // console.log(JSON.stringify(result.data.allContentfulTemplatePage1.nodes, null, 4))
-    console.log(result.data.allContentfulTemplatePage1.nodes, null, 4)
-    result.data.allContentfulTemplatePage1.nodes.map(node => createPage({
+    // console.log(result.data.allContentfulTemplateProject.nodes, null, 4)
+    result.data.allContentfulTemplateProject.nodes.map(node => createPage({
       path: `${node.url}`,
       component: projectTemplate,
       context: {

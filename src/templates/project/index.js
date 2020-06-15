@@ -1,18 +1,14 @@
 import React from "react";
 import { motion } from 'framer-motion';
-import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 
 import Grid from "../../components/grid";
 import Jumbotron from "../../components/contentful/jumbotron";
 import Text from "../../components/contentful/text";
-import Quote from "../../components/contentful/quote";
 import SEO from "../../components/seo";
 
 import './index.scss'
 
 const ProjectTemplate = ({ pageContext }) => {
-  console.log(pageContext)
-
   const headerData = {
     url: pageContext.url,
     image: pageContext.image,
@@ -51,10 +47,12 @@ const ProjectTemplate = ({ pageContext }) => {
           const type = data.internal.type;
           console.log(data)
 
-          if (type === 'ContentfulGenericTextField') {
-            return <Text data={data} />
-          } else if (type === 'ContentfulQuote') {
-            return <Quote data={data} />
+          if (type === 'ContentfulContentTextLeft') {
+            return <Text data={data} modifier="left" />
+          } else if (type === 'ContentfulContentTextRight') {
+            return <Text data={data} modifier="right" />
+          } else if (type === 'ContentfulContentTextCentered') {
+            return <Text data={data} modifier="centered" />
           }
         })}
       </Grid>

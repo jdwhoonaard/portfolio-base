@@ -48,8 +48,11 @@ const IndexPage = () => (
     <Grid className="fixed header__spacer">
       <div className="grid__row">
         <div className="sm-4 md-8 lg-12 xl-12">
-          <h1>Frontend<br />Developer,</h1>
-          <h2>UX Designer &<br />Coffee Afficionado</h2>
+          <h1>
+            <b>Front end Developer,</b>
+            <br />UX Designer &
+            <br />Coffee Afficionado
+          </h1>
         </div>
       </div>
 
