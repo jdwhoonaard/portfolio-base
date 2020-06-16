@@ -19,7 +19,7 @@ exports.createPages = ({ graphql, actions }) => {
     if (result.errors) {
       throw result.errors
     }
-    console.log(result.data.allContentfulTemplateProject.edges, null, 4)
+    // console.log(result.data.allContentfulTemplateProject.edges, null, 4)
     result.data.allContentfulTemplateProject.edges.map(({ node }) => createPage({
       path: `${node.url}`,
       component: projectTemplate,

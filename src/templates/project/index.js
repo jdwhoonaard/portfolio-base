@@ -22,8 +22,6 @@ const ProjectTemplate = ({ data: { contentfulTemplateProject } }) => {
     teammembers: pageData.teammembers,
   }
 
-  console.log(headerData)
-
   return (
     <motion.div
       key="wrapper"
@@ -49,7 +47,6 @@ const ProjectTemplate = ({ data: { contentfulTemplateProject } }) => {
 
         {pageData.contentList.map(item => {
           const type = item.internal.type;
-          console.log(item)
 
           if (type === 'ContentfulContentTextLeft') {
             return <Text key={item.id} render={item} modifier="left" />
@@ -57,7 +54,7 @@ const ProjectTemplate = ({ data: { contentfulTemplateProject } }) => {
             return <Text key={item.id} render={item} modifier="right" />
           } else if (type === 'ContentfulContentTextCentered') {
             return <Text key={item.id} render={item} modifier="centered" />
-          }
+          } else return null;
         })}
       </Grid>
 

@@ -1,44 +1,26 @@
 import React from "react"
 import { Link } from "gatsby"
-import { motion } from "framer-motion";
+import { motion, useViewportScroll, useTransform } from "framer-motion";
 import './index.scss'
 import Navigation from '../navigation'
 
-const variants = {
-  transparant: { backgroundColor: 'rgba(255, 255, 255, 0)' },
-  white: { backgroundColor: 'rgba(255, 255, 255, 1)' }
+const Header = ({ siteTitle }) => {
+  const { scrollYProgress } = useViewportScroll()
+
+  const xInput = [0, 0.1]
+  const colorOutput = ["rgba(255,255,255,0)", "rgba(255,255,255,1)"]
+  const color = useTransform(scrollYProgress, xInput, colorOutput)
+
+  return (
+    <motion.div
+      className="header__outer fluid"
+      style={{ backgroundColor: color }}
+    >
+      <header className="header fixed">
+        <Link className="header__branding" to="/">{siteTitle}</Link>
+        <Navigation />
+      </header>
+    </motion.div >
+  )
 }
-
-class Header extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = { scrollY: 0 };
-    this.handleScroll = this.handleScroll.bind(this);
-  }
-
-  componentDidMount() {
-    window.addEventListener('scroll', this.handleScroll)
-  }
-
-  handleScroll() {
-    this.setState({ scrollY: window.scrollY })
-  }
-
-  render() {
-    return (
-      <motion.div
-        className="header__outer fluid"
-        variants={variants}
-        animate={this.state.scrollY <= 10 ? 'transparant' : 'white'}
-      >
-        <header className="header fixed">
-          <Link className="header__branding" to="/">{this.props.siteTitle}</Link>
-          <Navigation />
-        </header>
-      </motion.div >
-    )
-  }
-}
-
 export default Header

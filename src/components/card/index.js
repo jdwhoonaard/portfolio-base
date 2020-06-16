@@ -15,7 +15,6 @@ const variants = {
 }
 
 const Card = ({ data }) => {
-  console.log(data)
   return (
     <motion.div
       className="gridCard"

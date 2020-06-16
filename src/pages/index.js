@@ -56,7 +56,7 @@ const IndexPage = ({ data }) => {
                   </Link>
                 </div>
               )
-            }
+            } else return null;
           })}
         </div>
       </Grid>

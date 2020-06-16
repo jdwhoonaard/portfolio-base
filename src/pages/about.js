@@ -8,7 +8,6 @@ import SEO from "../components/seo"
 import Grid from "../components/grid"
 
 const SecondPage = ({ data: { contentfulPageAbout } }) => {
-  console.log(contentfulPageAbout)
   return (
     <motion.div
       key="wrapper"
