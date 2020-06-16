@@ -69,6 +69,10 @@ $breakpoint-minXl: 1281px;
   padding-top: 4rem;
 }
 
+.flex_wrap {
+  flex-wrap: wrap;
+}
+
 // ROW
 .grid__row {
   display: flex;
@@ -77,6 +81,10 @@ $breakpoint-minXl: 1281px;
 
 .columns {
   flex-direction: column;
+}
+
+.dancing__cards .gridCard__outer:nth-child(2n) {
+  margin-top: 1em;
 }
 
 // CARDS

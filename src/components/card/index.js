@@ -14,7 +14,8 @@ const variants = {
   }
 }
 
-const Card = ({ title }) => {
+const Card = ({ data }) => {
+  console.log(data)
   return (
     <motion.div
       className="gridCard"
@@ -22,7 +23,7 @@ const Card = ({ title }) => {
     >
       <div className="gridCard__inner">
         <div className="gridCard__info">
-          {title}
+          {data.title}
         </div>
       </div>
     </motion.div>
@@ -30,7 +31,7 @@ const Card = ({ title }) => {
 }
 
 Card.propTypes = {
-  title: PropTypes.string.isRequired,
+
 }
 
 export default Card

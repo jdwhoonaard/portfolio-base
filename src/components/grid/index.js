@@ -11,8 +11,8 @@ const Grid = ({ className, children }) => {
 }
 
 Grid.propTypes = {
-  className: PropTypes.array,
+  className: PropTypes.string,
   children: PropTypes.node.isRequired,
 }
 
-export default Grid
+export default Grid;

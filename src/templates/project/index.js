@@ -1,4 +1,5 @@
 import React from "react";
+import { graphql } from 'gatsby'
 import { motion } from 'framer-motion';
 
 import Grid from "../../components/grid";
@@ -8,17 +9,20 @@ import SEO from "../../components/seo";
 
 import './index.scss'
 
-const ProjectTemplate = ({ pageContext }) => {
+const ProjectTemplate = ({ data: { contentfulTemplateProject } }) => {
+  const pageData = contentfulTemplateProject;
+
   const headerData = {
-    url: pageContext.url,
-    image: pageContext.image,
-    title: pageContext.title,
-    subtitle: pageContext.subtitle,
-    tags: pageContext.tags,
-    date: pageContext.date,
-    description: pageContext.description,
-    teammembers: pageContext.teammembers,
+    image: pageData.image,
+    title: pageData.title,
+    subtitle: pageData.subtitle,
+    tags: pageData.tags,
+    date: pageData.createdAt,
+    description: pageData.description,
+    teammembers: pageData.teammembers,
   }
+
+  console.log(headerData)
 
   return (
     <motion.div
@@ -41,25 +45,97 @@ const ProjectTemplate = ({ pageContext }) => {
     >
 
       <Grid className="fixed header__spacer">
-        <Jumbotron data={headerData} />
+        <Jumbotron data={headerData} cover={pageData.image.fluid} />
 
-        {pageContext.contentList.map(item => {
+        {pageData.contentList.map(item => {
           const type = item.internal.type;
           console.log(item)
 
           if (type === 'ContentfulContentTextLeft') {
-            return <Text render={item} modifier="left" />
+            return <Text key={item.id} render={item} modifier="left" />
           } else if (type === 'ContentfulContentTextRight') {
-            return <Text render={item} modifier="right" />
+            return <Text key={item.id} render={item} modifier="right" />
           } else if (type === 'ContentfulContentTextCentered') {
-            return <Text render={item} modifier="centered" />
+            return <Text key={item.id} render={item} modifier="centered" />
           }
         })}
       </Grid>
 
-      <SEO title={pageContext.title} />
+      <SEO title={pageData.title} />
     </motion.div >
   )
 }
+
+export const query = graphql`
+  query pageQuery($id: String) {
+    contentfulTemplateProject(id: {eq: $id}) {
+      id
+      title
+      subtitle
+      image {
+        fluid(maxWidth: 640) {
+          ...GatsbyContentfulFluid
+        }
+      }
+      tags
+      description {
+        json
+      }
+      teammembers {
+        fullName
+      }
+      contentList {
+        ... on ContentfulContentTextCentered {
+          id
+          internal {
+            type
+          }
+          body {
+            json
+          }
+        }
+        ... on ContentfulContentTextLeft {
+          id
+          internal {
+            type
+          }
+          body {
+            json
+          }
+          image {
+            fluid(maxWidth: 1280){
+              ...GatsbyContentfulFluid
+            }
+          }
+        }
+        ... on ContentfulContentTextRight {
+          id
+          internal {
+            type
+          }
+          body {
+            json
+          }
+          image {
+            fluid(maxWidth: 1280){
+              ...GatsbyContentfulFluid
+            }
+          }
+        }
+        ... on ContentfulContentImageGroup {
+          id
+          internal {
+            type
+          }
+          images {
+            fluid(maxWidth: 1280){
+              ...GatsbyContentfulFluid
+            }
+          }
+        }
+      }
+    }
+  }
+`
 
 export default ProjectTemplate

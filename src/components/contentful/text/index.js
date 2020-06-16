@@ -1,4 +1,5 @@
 import React from "react";
+import Img from 'gatsby-image';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import './index.scss'
 
@@ -19,7 +20,7 @@ export default ({ render, modifier }) => {
         </div>
         {render.image ? (
           <div className={`sm-4 md-4 lg-5 xl-5`} >
-            <img src={render.image.sizes.src} className="contentful__text__image" />
+            <Img fluid={render.image.fluid} className="contentful__text__image" />
           </div>
         ) : null}
       </div>
@@ -29,7 +30,7 @@ export default ({ render, modifier }) => {
       <div className="grid__row fixed contentful__text">
         {render.image ? (
           <div className="sm-4 md-4 lg-5 xl-5 lg-offset-1 xl-offset-1" >
-            <img src={render.image.sizes.src} className="contentful__text__image" />
+            <Img fluid={render.image.fluid} className="contentful__text__image" />
           </div>
         ) : null}
         <div className={`md-4 lg-5 xl-5 ${render.image ? '' : 'md-offset-4 lg-offset-6 xl-offset-6'} text__right`} >
