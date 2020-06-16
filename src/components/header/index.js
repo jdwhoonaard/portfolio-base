@@ -12,10 +12,7 @@ const Header = ({ siteTitle }) => {
   const color = useTransform(scrollYProgress, xInput, colorOutput)
 
   return (
-    <motion.div
-      className="header__outer fluid"
-      style={{ backgroundColor: color }}
-    >
+    <motion.div className="header__outer fluid" style={{ backgroundColor: color }}>
       <header className="header fixed">
         <Link className="header__branding" to="/">{siteTitle}</Link>
         <Navigation />
