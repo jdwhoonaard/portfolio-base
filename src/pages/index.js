@@ -10,7 +10,6 @@ import Card from "../components/card"
 const IndexPage = ({ data }) => {
   return (
     <motion.div
-      key="wrapper"
       variants={{
         hidden: {
           opacity: 0,

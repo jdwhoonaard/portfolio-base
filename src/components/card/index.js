@@ -1,5 +1,4 @@
 import React from "react"
-import PropTypes from "prop-types"
 import { motion } from 'framer-motion'
 import './index.scss';
 
@@ -27,10 +26,6 @@ const Card = ({ data }) => {
       </div>
     </motion.div>
   )
-}
-
-Card.propTypes = {
-
 }
 
 export default Card

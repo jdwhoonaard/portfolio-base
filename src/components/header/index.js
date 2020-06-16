@@ -12,13 +12,37 @@ const Header = ({ siteTitle }) => {
   const color = useTransform(scrollYProgress, xInput, colorOutput)
 
   return (
-    <motion.div style={{ backgroundColor: color }}>
-      <div className="header__outer fluid" >
-        <header className="header fixed">
-          <Link className="header__branding" to="/">{siteTitle}</Link>
-          <Navigation />
-        </header>
-      </div>
+    <motion.div
+      variants={{
+        hidden: {
+          opacity: 0,
+          position: "fixed",
+          top: '-96px',
+          width: '100vw',
+          zIndex: '97'
+        },
+        visible: {
+          opacity: 1,
+          position: "fixed",
+          top: 0,
+          width: '100vw',
+          zIndex: '97',
+          transition: {
+            when: "beforeChildren",
+            staggerChildren: 0.25
+          }
+        }
+      }}
+      initial="hidden"
+      animate="visible"
+      style={{
+        backgroundColor: color,
+      }}
+    >
+      <header className="header fixed">
+        <Link className="header__branding" to="/">{siteTitle}</Link>
+        <Navigation />
+      </header>
     </motion.div >
   )
 }
