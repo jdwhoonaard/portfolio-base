@@ -1,3 +1,6 @@
+@use "sass:math";
+@debug sqrt(2);
+
 html, body {
   margin: 0;
   padding: 0;
@@ -45,69 +48,47 @@ $breakpoint-minXl: 1281px;
   }
 }
 
+$fontsize: 18px;
+$lineheight: 1.5em;
+$scalefactor: 1.5;
+
+h1, h2, h3, h4, h5, h6 p, pre, table, blockquote {
+  line-height: $lineheight;
+  margin: 0;
+  padding: 0;
+}
+
 // typography
 h1 {
-  @include sm() {
-    font-size: 2.75em;
-    line-height: 1em;
-    margin-top: 0.5em;
-    margin-bottom: 1em;
-  }
+  font-size: 1em * $scalefactor * $scalefactor * $scalefactor;
+  line-height: $lineheight;
 
-  font-size: 5.8125em;
-  line-height: 1.24731183em;
-  margin-top: 0.31182796em;
-  margin-bottom: 0.62365592em;
+  @include sm() {
+    font-size: 1em * $scalefactor * $scalefactor;
+  }
 }
 
 h2 {
-  @include sm() {
-    font-size: 1.9375em;
-    line-height: 1.41935484em;
-    margin-top: 0.70967742em;
-    margin-bottom: 0.70967742em;
-  }
+  font-size: 1em * $scalefactor * $scalefactor;
 
-  font-size: 3.25em;
-  line-height: 1.11538462em;
-  margin-top: 0.55769231em;
-  margin-bottom: 0.55769231em;
+  @include sm() {
+    font-size: 1em * $scalefactor;
+  }
 }
 
 h3 {
-  @include sm() {
-    font-size: 1.375em;
-    line-height: 1em;
-    margin-top: 1em;
-    margin-bottom: 0em;
-  }
+  font-size: 1em * $scalefactor;
 
-  font-size: 1.8125em;
-  line-height: 1em;
-  margin-top: 1em;
-  margin-bottom: 0em;
+  @include sm() {
+    font-size: 1em;
+  }
 }
 
 h4 {
   font-size: 1em;
-  line-height: 1.8125em;
-  margin-top: 1.8125em;
-  margin-bottom: 0em;
-}
-
-h5 {
-  font-size: 1em;
-  line-height: 1.8125em;
-  margin-top: 1.8125em;
-  margin-bottom: 0em;
 }
 
 p, ul, ol, pre, table, blockquote {
-  margin-top: 0em;
-  margin-bottom: 1.8125em;
-}
-
-ul ul, ol ol, ul ol, ol ul {
-  margin-top: 0em;
-  margin-bottom: 0em;
+  font-size: 1em;
+  line-height: $lineheight;
 }

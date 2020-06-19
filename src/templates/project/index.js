@@ -100,7 +100,7 @@ export const query = graphql`
             json
           }
           image {
-            fluid(maxWidth: 1280){
+            fluid(maxWidth: 960){
               ...GatsbyContentfulFluid
             }
           }
@@ -114,7 +114,7 @@ export const query = graphql`
             json
           }
           image {
-            fluid(maxWidth: 1280){
+            fluid(maxWidth: 960){
               ...GatsbyContentfulFluid
             }
           }
@@ -125,7 +125,7 @@ export const query = graphql`
             type
           }
           images {
-            fluid(maxWidth: 1280){
+            fluid(maxWidth: 960){
               ...GatsbyContentfulFluid
             }
           }

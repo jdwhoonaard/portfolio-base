@@ -83,8 +83,26 @@ $breakpoint-minXl: 1281px;
   flex-direction: column;
 }
 
+.dancing__cards {
+  margin-top: 4em;
+}
+
+.dancing__cards .gridCard__outer {
+  @include sm () {
+    margin-top: 1em;
+  }
+}
+
 .dancing__cards .gridCard__outer:nth-child(2n) {
-  margin-top: 1em;
+  @include md() {
+    margin-top: 1em;
+  }
+  @include lg() {
+    margin-top: 1em;
+  }
+  @include xl() {
+    margin-top: 1em;
+  }
 }
 
 // CARDS

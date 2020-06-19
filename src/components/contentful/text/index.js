@@ -7,7 +7,7 @@ export default ({ render, modifier }) => {
   if (modifier === 'centered') {
     return (
       <div className="grid__row fixed contentful__text">
-        <div className="sm-4 md-8 lg-offset-3 lg-6 xl-offset-3 xl-6 contentful__text__centered" >
+        <div className="sm-4 md-offset-1 md-6 lg-offset-3 lg-6 xl-offset-3 xl-6 contentful__text__centered" >
           {documentToReactComponents(render.body.json)}
         </div>
       </div>
@@ -15,11 +15,11 @@ export default ({ render, modifier }) => {
   } else if (modifier === 'left') {
     return (
       <div className="grid__row fixed contentful__text">
-        <div className="md-4 lg-offset-1 lg-5 xl-offset-1 xl-5" >
+        <div className="sm-4 md-offset-1 md-6 lg-offset-1 lg-5 xl-offset-1 xl-5" >
           {documentToReactComponents(render.body.json)}
         </div>
         {render.image ? (
-          <div className={`sm-4 md-4 lg-5 xl-5`} >
+          <div className={`sm-4 md-offset-1 md-6 lg-5 xl-5`} >
             <Img fluid={render.image.fluid} className="contentful__text__image" />
           </div>
         ) : null}
@@ -29,11 +29,11 @@ export default ({ render, modifier }) => {
     return (
       <div className="grid__row fixed contentful__text">
         {render.image ? (
-          <div className="sm-4 md-4 lg-5 xl-5 lg-offset-1 xl-offset-1" >
+          <div className="sm-4 md-offset-1 md-6 lg-5 xl-5 lg-offset-1 xl-offset-1" >
             <Img fluid={render.image.fluid} className="contentful__text__image" />
           </div>
         ) : null}
-        <div className={`md-4 lg-5 xl-5 ${render.image ? '' : 'md-offset-4 lg-offset-6 xl-offset-6'} text__right`} >
+        <div className={`sm-4 md-offset-1 md-6 lg-5 xl-5 ${render.image ? '' : 'md-offset-4 lg-offset-6 xl-offset-6'} text__right`} >
           {documentToReactComponents(render.body.json)}
         </div>
       </div>

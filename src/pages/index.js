@@ -8,6 +8,7 @@ import Grid from "../components/grid"
 import Card from "../components/card"
 
 const IndexPage = ({ data }) => {
+
   return (
     <motion.div
       variants={{
@@ -41,9 +42,7 @@ const IndexPage = ({ data }) => {
               return (
                 <div key={card.url} className="gridCard__outer sm-4 md-4 lg-3 xl-3">
                   <Link to={`/about/`}>
-                    <Card data={{
-                      title: 'About me'
-                    }} />
+                    <Card data={card} />
                   </Link>
                 </div>
               )
@@ -77,7 +76,7 @@ export const query = graphql`
             type
           }
           profileImage {
-            fluid(maxWidth: 640) {
+            fluid(maxWidth: 320) {
               ...GatsbyContentfulFluid
             }
           }
@@ -92,7 +91,7 @@ export const query = graphql`
           subtitle
           tags
           image {
-            fluid(maxWidth: 640) {
+            fluid(maxWidth: 320) {
               ...GatsbyContentfulFluid
             }
           }
