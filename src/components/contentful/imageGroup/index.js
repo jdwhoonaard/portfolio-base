@@ -1,20 +1,34 @@
 import React from "react";
-import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
+import Img from 'gatsby-image';
 
 import './index.scss'
 
 
-const ImageGroup = ({ data, modifier }) => {
+const ImageGroup = ({ render }) => {
+  console.log(render)
 
-  return (
-    <div className="grid__row fixed contentful__imageGroup">
-      {data
-      }
-      <div className="sm-4 md-8 lg-offset-3 lg-6 xl-offset-3 xl-6 contentful__text__centered" >
-
+  if (render.images.length === 1) {
+    return (
+      <div className="grid__row fixed contentful__imageGroup">
+        <div className="sm-4 md-offset-1 md-6 lg-offset-1 lg-10 xl-offset-1 xl-10" >
+          {render.images.map(image => (
+            <Img fluid={image.fluid} />
+          ))}
+        </div>
       </div>
-    </div>
-  )
+    )
+  } else if (render.images.length !== 1) {
+    return (
+      <div className="grid__row fixed contentful__imageGroup">
+        {render.images.map((image, i) => (
+          <div className={`sm-4 md-offset-1 md-6 lg-5 xl-5 ${i % 2 ? '' : 'lg-offset-1 xl-offset-1'}`} >
+            <Img fluid={image.fluid} />
+          </div>
+        ))
+        }
+      </div >
+    )
+  } else return 'what?'
 }
 
 export default ImageGroup;

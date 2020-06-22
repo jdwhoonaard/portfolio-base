@@ -1,22 +1,4 @@
-@use "sass:math";
-@debug sqrt(2);
-
-html, body {
-  margin: 0;
-  padding: 0;
-
-  font-size: 18px;
-  line-height: 29px;
-}
-
-body {
-  font-family: 'Open Sans';
-  font-size: 1em;
-  line-height: 1.8125em;
-}
-
 // breakpoints
-
 $breakpoint-maxSm: 540px;
 $breakpoint-minMed: 541px;
 $breakpoint-maxMed: 768px;
@@ -48,9 +30,36 @@ $breakpoint-minXl: 1281px;
   }
 }
 
-$fontsize: 18px;
-$lineheight: 1.5em;
+$fontsize-big: 20px;
+$fontsize-small: 16px;
+$lineheight: 1.6em;
 $scalefactor: 1.5;
+
+html, body {
+  margin: 0;
+  padding: 0;
+
+  @include sm() {
+    font-size: $fontsize-small;
+  }
+  @include md() {
+    font-size: $fontsize-small;
+  }
+  @include lg() {
+    font-size: $fontsize-big;
+  }
+  @include xl() {
+    font-size: $fontsize-big;
+  }
+
+  line-height: 29px;
+}
+
+body {
+  font-family: 'Open Sans';
+  font-size: 1em;
+  line-height: $lineheight;
+}
 
 h1, h2, h3, h4, h5, h6 p, pre, table, blockquote {
   line-height: $lineheight;

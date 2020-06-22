@@ -25,17 +25,17 @@ const Jumbotron = ({ data }) => {
       <div className="jumbotron__metaSection grid__row">
 
         <div className="sm-4 md-offset-1 md-6  lg-offset-1 lg-7 xl-offset-1 xl-7" >
-          <h4>A small title</h4>
+          <h4>Description</h4>
           {data.description !== null ? documentToReactComponents(data.description.json) : null}
         </div>
-        <div className="sm-4 md-offset-1 md-6  lg-3 xl-3">
-          <h4>Teammembers</h4>
-          {data.teammembers[0] ? (
+        {data.teammembers.length >= 2 ? (
+          <div className="sm-4 md-offset-1 md-6  lg-3 xl-3">
+            <h4>Teammembers</h4>
             <ul className="contentful__jumbotron__teamlist">
               {data.teammembers.map((teammember) => <li key={teammember.fullName} className="teamlist__item">{teammember.fullName}</li>)}
             </ul>
-          ) : null}
-        </div>
+          </div>
+        ) : null}
 
       </div>
     </>
