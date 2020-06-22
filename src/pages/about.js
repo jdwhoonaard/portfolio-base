@@ -30,10 +30,15 @@ const SecondPage = ({ data: { contentfulPageAbout } }) => {
       <Grid className="fixed header__spacer">
 
         <div className="grid__row">
-          <div className="sm-4 md-4 lg-6 xl-5">
+          <div className="sm-4 md-offset-4 md-4 lg-offset-6 lg-5 xl-offset-6 xl-5">
+            <h1>Hello,</h1>
+          </div>
+        </div>
+        <div className="grid__row">
+          <div className="sm-4 md-4 lg-offset-1 lg-5 xl-offset-1 xl-5">
             <Img fluid={contentfulPageAbout.profileImage.fluid} />
           </div>
-          <div className="sm-4 md-4 lg-6 xl-5">
+          <div className="sm-4 md-4 lg-5 xl-5">
             {documentToReactComponents(contentfulPageAbout.description.json)}
           </div>
         </div>
