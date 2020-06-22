@@ -48,7 +48,11 @@ module.exports = {
     {
       resolve: `gatsby-source-contentful`,
       options: {
+<<<<<<< HEAD
         spaceId: process.env.CONTENTFUL_SPACE_ID,
+=======
+        spaceId: `usgt0m284301`,
+>>>>>>> changed contentful repository
         accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
         downloadLocal: true,
       },
