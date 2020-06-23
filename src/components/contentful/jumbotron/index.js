@@ -8,7 +8,7 @@ const Jumbotron = ({ data }) => {
     <>
       <div className="jumbotron__titleSection grid__row">
 
-        <div className="sm-4 md-offset-1 md-6 lg-6 xl-offset-1 xl-5">
+        <div className="sm-4 md-offset-1 md-6 lg-7 xl-7">
           <h1>{data.title}</h1>
           <h2>{data.subtitle}</h2>
           <span>{data.tags[0] ? data.tags.join(', ') : null}</span>
@@ -16,7 +16,7 @@ const Jumbotron = ({ data }) => {
         <Img
           fluid={data.image.fluid}
           objectFit="contain"
-          className="sm-4 md-offset-1 md-6 lg-6 xl-5 jumbotron__coverImage"
+          className="sm-4 md-offset-1 md-6 lg-5 xl-5 jumbotron__coverImage"
           height="100px"
         />
 
@@ -24,7 +24,7 @@ const Jumbotron = ({ data }) => {
 
       <div className="jumbotron__metaSection grid__row">
 
-        <div className="sm-4 md-offset-1 md-6  lg-offset-1 lg-7 xl-offset-1 xl-7" >
+        <div className="sm-4 md-offset-1 md-6 lg-offset-1 lg-7 xl-offset-1 xl-7" >
           <h4>Description</h4>
           {data.description !== null ? documentToReactComponents(data.description.json) : null}
         </div>
