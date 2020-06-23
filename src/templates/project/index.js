@@ -13,7 +13,6 @@ import './index.scss'
 
 const ProjectTemplate = ({ data: { contentfulTemplateProject } }) => {
   const pageData = contentfulTemplateProject;
-  console.log(pageData)
 
   const headerData = {
     image: pageData.image,
@@ -60,7 +59,7 @@ const ProjectTemplate = ({ data: { contentfulTemplateProject } }) => {
           } else if (type === 'ContentfulContentImageGroup') {
             return <ImageGroup key={item.id} render={item} />
           } else if (type === 'ContentfulContentVideo') {
-            return <Video src={item.src} />
+            return <Video key={item.src} src={item.src} />
           } else return null;
         })}
       </Grid>

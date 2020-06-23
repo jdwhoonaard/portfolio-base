@@ -5,12 +5,13 @@ import './index.scss'
 
 
 const ImageGroup = ({ render }) => {
+  console.log(render)
   if (render.images.length === 1) {
     return (
       <div className="grid__row fixed contentful__imageGroup">
         <div className="sm-4 md-offset-1 md-6 lg-offset-1 lg-10 xl-offset-1 xl-10" >
           {render.images.map(image => (
-            <Img fluid={image.fluid} />
+            <Img key={JSON.stringify(image.fluid.base64)} fluid={image.fluid} />
           ))}
         </div>
       </div>
@@ -19,7 +20,7 @@ const ImageGroup = ({ render }) => {
     return (
       <div className="grid__row fixed contentful__imageGroup">
         {render.images.map((image, i) => (
-          <div className={`sm-4 md-offset-1 md-6 lg-5 xl-5 ${i % 2 ? '' : 'lg-offset-1 xl-offset-1'}`} >
+          <div key={JSON.stringify(image.fluid.base64)} className={`sm-4 md-offset-1 md-6 lg-5 xl-5 ${i % 2 ? '' : 'lg-offset-1 xl-offset-1'}`} >
             <Img fluid={image.fluid} />
           </div>
         ))
