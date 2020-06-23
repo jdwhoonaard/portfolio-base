@@ -6,12 +6,14 @@ import Grid from "../../components/grid";
 import Jumbotron from "../../components/contentful/jumbotron";
 import Text from "../../components/contentful/text";
 import ImageGroup from "../../components/contentful/imageGroup";
+import Video from "../../components/contentful/video"
 import SEO from "../../components/seo";
 
 import './index.scss'
 
 const ProjectTemplate = ({ data: { contentfulTemplateProject } }) => {
   const pageData = contentfulTemplateProject;
+  console.log(pageData)
 
   const headerData = {
     image: pageData.image,
@@ -57,6 +59,8 @@ const ProjectTemplate = ({ data: { contentfulTemplateProject } }) => {
             return <Text key={item.id} render={item} modifier="centered" />
           } else if (type === 'ContentfulContentImageGroup') {
             return <ImageGroup key={item.id} render={item} />
+          } else if (type === 'ContentfulContentVideo') {
+            return <Video src={item.src} />
           } else return null;
         })}
       </Grid>
@@ -132,6 +136,13 @@ export const query = graphql`
               ...GatsbyContentfulFluid
             }
           }
+        }
+        ... on ContentfulContentVideo {
+          id
+          internal {
+            type
+          }
+          src
         }
       }
     }

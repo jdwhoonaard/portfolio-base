@@ -4,7 +4,30 @@ import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 import './index.scss'
 
 const Jumbotron = ({ data }) => {
-  return (
+
+  if (data.teammembers.length <= 2) {
+    return (
+      <>
+        <div className="jumbotron__titleSection grid__row">
+
+          <div className="sm-4 md-offset-1 md-6 lg-7 xl-7">
+            <h1>{data.title}</h1>
+            <h2>{data.subtitle}</h2>
+            <p>{data.tags[0] ? data.tags.join(', ') : null}</p>
+            <h4>Description</h4>
+            {data.description !== null ? documentToReactComponents(data.description.json) : null}
+          </div>
+          <Img
+            fluid={data.image.fluid}
+            objectFit="contain"
+            className="sm-4 md-offset-1 md-6 lg-5 xl-5 jumbotron__coverImage"
+            height="100px"
+          />
+
+        </div>
+      </>
+    )
+  } else return (
     <>
       <div className="jumbotron__titleSection grid__row">
 

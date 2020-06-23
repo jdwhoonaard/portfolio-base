@@ -5,8 +5,6 @@ import './index.scss'
 
 
 const ImageGroup = ({ render }) => {
-  console.log(render)
-
   if (render.images.length === 1) {
     return (
       <div className="grid__row fixed contentful__imageGroup">

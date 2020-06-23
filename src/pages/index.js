@@ -8,7 +8,6 @@ import Grid from "../components/grid"
 import Card from "../components/card"
 
 const IndexPage = ({ data }) => {
-
   return (
     <motion.div
       variants={{
