@@ -1,4 +1,5 @@
 import React from "react"
+import { graphql } from "gatsby"
 import Img from "gatsby-image"
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import { motion } from 'framer-motion'
@@ -6,7 +7,7 @@ import { motion } from 'framer-motion'
 import SEO from "../components/seo"
 import Grid from "../components/grid"
 
-const SecondPage = ({ data: { contentfulPageAbout } }) => {
+const AboutPage = ({ data: { contentfulPageAbout } }) => {
   return (
     <motion.div
       key="wrapper"
@@ -70,4 +71,4 @@ export const query = graphql`
 `;
 
 
-export default SecondPage
+export default AboutPage
