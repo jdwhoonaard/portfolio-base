@@ -5,7 +5,7 @@ require("dotenv").config({
 module.exports = {
   siteMetadata: {
     title: `Job van den Hoonaard`,
-    description: `A personal portfolio site`,
+    description: `A creative looking for ways to express creativity within the technical possibilities.`,
     author: `Job van den Hoonaard`,
   },
   plugins: [
@@ -39,7 +39,6 @@ module.exports = {
       options: {
         fonts: [
           `Open Sans\:300,400, 700`,
-          `Montserrat\:300, 400, 700`,
           'material icons'
         ],
         display: 'swap'
