@@ -1,8 +1,6 @@
 import React from "react";
 import Img from 'gatsby-image';
-
 import './index.scss'
-
 
 const ImageGroup = ({ render }) => {
   if (render.images.length === 1) {

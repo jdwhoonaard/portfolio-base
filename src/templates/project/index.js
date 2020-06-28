@@ -1,14 +1,12 @@
 import React from "react";
 import { graphql } from 'gatsby'
 import { motion } from 'framer-motion';
-
 import Grid from "../../components/grid";
 import Jumbotron from "../../components/contentful/jumbotron";
 import Text from "../../components/contentful/text";
 import ImageGroup from "../../components/contentful/imageGroup";
 import Video from "../../components/contentful/video"
 import SEO from "../../components/seo";
-
 import './index.scss'
 
 const ProjectTemplate = ({ data: { contentfulTemplateProject } }) => {
@@ -43,10 +41,8 @@ const ProjectTemplate = ({ data: { contentfulTemplateProject } }) => {
       animate="visible"
       exit="hidden"
     >
-
       <Grid className="fixed header__spacer">
         <Jumbotron data={headerData} cover={pageData.image.fluid} />
-
         {pageData.contentList.map(item => {
           const type = item.internal.type;
 
@@ -63,7 +59,6 @@ const ProjectTemplate = ({ data: { contentfulTemplateProject } }) => {
           } else return null;
         })}
       </Grid>
-
       <SEO title={pageData.title} />
     </motion.div >
   )

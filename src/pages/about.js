@@ -27,9 +27,7 @@ const AboutPage = ({ data: { contentfulPageAbout } }) => {
       animate="visible"
       exit="hidden"
     >
-
       <Grid className="fixed header__spacer">
-
         <div className="grid__row">
           <div className="sm-4 md-offset-4 md-4 lg-offset-6 lg-5 xl-offset-6 xl-5">
             <h1>Hello,</h1>
@@ -43,9 +41,7 @@ const AboutPage = ({ data: { contentfulPageAbout } }) => {
             {documentToReactComponents(contentfulPageAbout.description.json)}
           </div>
         </div>
-
       </Grid>
-
       <SEO title="about me" />
     </motion.div>
   )
