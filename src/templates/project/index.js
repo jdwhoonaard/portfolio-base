@@ -41,7 +41,7 @@ const ProjectTemplate = ({ data: { contentfulTemplateProject } }) => {
       animate="visible"
       exit="hidden"
     >
-      <Grid className="fixed header__spacer">
+      <Grid className="fixed header__spacer project">
         <Jumbotron data={headerData} cover={pageData.image.fluid} />
         {pageData.contentList.map(item => {
           const type = item.internal.type;
