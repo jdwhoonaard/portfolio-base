@@ -10,25 +10,17 @@ module.exports = {
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `images`,
-        path: `${__dirname}/src/images`,
-      },
-    },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: ``,
-        short_name: ``,
+        name: `Portfolio base`,
+        short_name: `Portfolio base`,
         start_url: `/`,
-        background_color: ``,
-        theme_color: ``,
+        background_color: `#fff`,
+        theme_color: `#1200fe`,
         display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`
       },
     },
     {

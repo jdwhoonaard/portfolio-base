@@ -101,3 +101,9 @@ p, ul, ol, pre, table, blockquote {
   font-size: 1em;
   line-height: $lineheight;
 }
+
+.needed_more_space {
+  padding-left: 2em;
+  padding-right: 2em;
+  box-sizing: border-box;
+}
