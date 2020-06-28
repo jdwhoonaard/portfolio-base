@@ -2,10 +2,19 @@ import React from "react"
 import { Link, graphql } from "gatsby"
 import { motion } from 'framer-motion';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
+import { BLOCKS } from '@contentful/rich-text-types';
 
 import SEO from "../components/seo"
 import Grid from "../components/grid"
 import Card from "../components/card"
+
+const options = {
+  renderNode: {
+    [BLOCKS.PARAGRAPH]: () => {
+      return null;
+    },
+  },
+};
 
 const IndexPage = ({ data }) => {
   return (
@@ -30,7 +39,7 @@ const IndexPage = ({ data }) => {
       <Grid className="fixed header__spacer">
         <div className="grid__row">
           <div className="sm-4 md-8 lg-12 xl-12">
-            {documentToReactComponents(data.contentfulPageIndex.body.json)}
+            {documentToReactComponents(data.contentfulPageIndex.body.json, options)}
           </div>
         </div>
 
@@ -39,7 +48,7 @@ const IndexPage = ({ data }) => {
 
             if (card.internal.type === 'ContentfulPageAbout') {
               return (
-                <div key={card.url} className="gridCard__outer sm-4 md-4 lg-3 xl-3">
+                <div key="aboutme" className="gridCard__outer sm-4 md-4 lg-3 xl-3">
                   <Link to={`/about/`}>
                     <Card data={card} />
                   </Link>
