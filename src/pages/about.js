@@ -29,10 +29,10 @@ const AboutPage = ({ data: { contentfulPageAbout } }) => {
     >
       <Grid className="fixed header__spacer">
         <div className="grid__row">
-          <div className="sm-4 md-4 lg-6 xl-6">
+          <div className="sm-4 md-offset-1 md-6 lg-6 xl-6">
             <Img fluid={contentfulPageAbout.profileImage.fluid} />
           </div>
-          <div className="sm-4 md-4 lg-6 xl-6">
+          <div className="sm-4 md-offset-1 md-6 lg-6 xl-6">
             <div className="needed_more_space">
               {documentToReactComponents(contentfulPageAbout.description.json)}
             </div>

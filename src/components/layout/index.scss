@@ -103,9 +103,25 @@ p, ul, ol, pre, table, blockquote {
 }
 
 .needed_more_space {
-  padding-left: 2em;
-  padding-right: 2em;
   box-sizing: border-box;
+
+  @include sm() {
+    padding-top: 2em;
+  }
+
+  @include md() {
+    padding-top: 2em;
+  }
+
+  @include lg() {
+    padding-left: 2em;
+    padding-right: 2em;
+  }
+  
+  @include xl() {
+    padding-left: 2em;
+    padding-right: 2em;
+  }
 }
 
 footer {
