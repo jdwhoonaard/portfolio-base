@@ -40,16 +40,16 @@ html, body {
   padding: 0;
 
   @include sm() {
-    font-size: $fontsize-small;
+    font-size: $fontsize-big;
   }
   @include md() {
-    font-size: $fontsize-small;
+    font-size: $fontsize-big;
   }
   @include lg() {
-    font-size: $fontsize-big;
+    font-size: $fontsize-small;
   }
   @include xl() {
-    font-size: $fontsize-big;
+    font-size: $fontsize-small;
   }
 
   line-height: 29px;
