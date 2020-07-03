@@ -1,7 +1,6 @@
 import React from "react"
 import { Link } from "gatsby"
 import { motion, useViewportScroll, useTransform } from "framer-motion";
-import './index.scss'
 import Navigation from '../navigation'
 
 const Header = ({ siteTitle }) => {
@@ -39,9 +38,19 @@ const Header = ({ siteTitle }) => {
         backgroundColor: color,
       }}
     >
-      <header className="header fixed">
-        <Link className="header__branding" to="/">{siteTitle}</Link>
-        <Navigation />
+      <header className="container container--fixed">
+        <div className="container__row">
+          <div className="
+            header
+            container__col-xs-4
+            container__col-sm-8
+            container__col-md-8
+            container__col-lg-12
+          ">
+            <Link className="header__branding" to="/">{siteTitle}</Link>
+            <Navigation />
+          </div>
+        </div>
       </header>
     </motion.div >
   )

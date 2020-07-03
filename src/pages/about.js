@@ -5,7 +5,6 @@ import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import { motion } from 'framer-motion'
 
 import SEO from "../components/seo"
-import Grid from "../components/grid"
 
 const AboutPage = ({ data: { contentfulPageAbout } }) => {
   return (
@@ -27,18 +26,31 @@ const AboutPage = ({ data: { contentfulPageAbout } }) => {
       animate="visible"
       exit="hidden"
     >
-      <Grid className="fixed header__spacer">
-        <div className="grid__row">
-          <div className="sm-4 md-offset-1 md-6 lg-6 xl-6">
+      <div className="container container--menuSpacer">
+        <div className="container__row">
+          <div className="
+            container__col-xs-4
+            container__col-sm-6
+            container__col-sm-offset-1
+            container__col-md-6
+            container__col-md-offset-1
+            container__col-lg-6
+          ">
             <Img fluid={contentfulPageAbout.profileImage.fluid} />
           </div>
-          <div className="sm-4 md-offset-1 md-6 lg-6 xl-6">
-            <div className="needed_more_space">
-              {documentToReactComponents(contentfulPageAbout.description.json)}
-            </div>
+          <div className="
+            type__extraSpace
+            container__col-xs-4
+            container__col-sm-6
+            container__col-sm-offset-1
+            container__col-md-6
+            container__col-md-offset-1
+            container__col-lg-6
+          ">
+            {documentToReactComponents(contentfulPageAbout.description.json)}
           </div>
         </div>
-      </Grid>
+      </div>
       <SEO title="about me" />
     </motion.div>
   )

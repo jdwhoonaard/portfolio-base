@@ -1,96 +1,85 @@
-// breakpoints
-$breakpoint-maxSm: 540px;
-$breakpoint-minMed: 541px;
-$breakpoint-maxMed: 768px;
-$breakpoint-minLg: 769px;
-$breakpoint-maxLg: 1280px;
-$breakpoint-minXl: 1281px;
-
-@mixin sm() {
-  @media (max-width: $breakpoint-maxSm) {
-    @content;
+// -- Media Queries -- //
+@mixin create-mq($breakpointMin, $breakpointMax) {
+  @if ($breakpointMin == 0) {
+    @media screen and (max-width: $breakpointMax * 1px) {
+      @content;
+    }
+  } @if ($breakpointMax == 0) {
+    @media screen and (min-width: $breakpointMin *1px) {
+      @content;
+    }
+  } @else {
+    @media screen and (min-width: $breakpointMin *1px) and (max-width: $breakpointMax * 1px) {
+      @content;
+    }
   }
 }
 
-@mixin md() {
-  @media (min-width: $breakpoint-minMed) and (max-width: $breakpoint-maxMed) {
-    @content;
-  }
-}
+// -- Variables -- //
+$type__fs-lg: 20;
+$type__fs-md: 16;
+$type__fs-sm: 16;
+$type-lh: 1.6;
+$type-rythm: 1.5;
 
-@mixin lg() {
-  @media (min-width: $breakpoint-minLg) and (max-width: $breakpoint-maxLg) {
-    @content;
-  }
-}
+$grid__bp-xs: 576; // 36em
+$grid__bp-sm: 768; // 48em
+$grid__bp-md: 1024; // 64em
+$grid__bp-lg: 1280; // 80em
+$grid__bp-xl: 1440; // 90em
 
-@mixin xl() {
-  @media (min-width: $breakpoint-minXl) {
-    @content;
-  }
-}
+$grid__col-xs: 4;
+$grid__col-sm: 8;
+$grid__col-md: 8;
+$grid__col-lg: 12;
+$grid__col-xl: 12;
 
-$fontsize-big: 20px;
-$fontsize-small: 16px;
-$lineheight: 1.6em;
-$scalefactor: 1.5;
+$grid__gut-xs: 16;
+$grid__gut-sm: 16;
+$grid__gut-md: 24;
+$grid__gut-lg: 24;
+$grid__gut-xl: 24;
 
+// -- Base -- //
 html, body {
   margin: 0;
   padding: 0;
-
-  @include sm() {
-    font-size: $fontsize-big;
-  }
-  @include md() {
-    font-size: $fontsize-big;
-  }
-  @include lg() {
-    font-size: $fontsize-small;
-  }
-  @include xl() {
-    font-size: $fontsize-small;
-  }
-
   line-height: 29px;
+  @include create-mq(0, $grid__bp-sm) {
+    font-size: $type__fs-sm * 1px;
+  }
+
+  @include create-mq($grid__bp-sm + 1, $grid__bp-lg) {
+    font-size: $type__fs-md * 1px;
+  }
+
+  @include create-mq($grid__bp-lg + 1, 0) {
+    font-size: $type__fs-lg * 1px;
+  }
 }
 
 body {
   font-family: 'Open Sans';
   font-size: 1em;
-  line-height: $lineheight;
+  line-height: $type-lh;
 }
 
 h1, h2, h3, h4, h5, h6 p, pre, table, blockquote {
-  line-height: $lineheight;
   margin: 0;
   padding: 0;
+  line-height: $type-lh;
 }
 
-// typography
 h1 {
-  font-size: 1em * $scalefactor * $scalefactor * $scalefactor;
-  line-height: $lineheight;
-
-  @include sm() {
-    font-size: 1em * $scalefactor * $scalefactor;
-  }
+  font-size: 1em * $type-rythm * $type-rythm * $type-rythm;
 }
 
 h2 {
-  font-size: 1em * $scalefactor * $scalefactor;
-
-  @include sm() {
-    font-size: 1em * $scalefactor;
-  }
+  font-size: 1em * $type-rythm * $type-rythm;
 }
 
 h3 {
-  font-size: 1em * $scalefactor;
-
-  @include sm() {
-    font-size: 1em;
-  }
+  font-size: 1em * $type-rythm;
 }
 
 h4 {
@@ -99,34 +88,185 @@ h4 {
 
 p, ul, ol, pre, table, blockquote {
   font-size: 1em;
-  line-height: $lineheight;
+  line-height: $type-lh;
 }
 
-.needed_more_space {
-  box-sizing: border-box;
+.header {
+  height: 5.75em;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
 
-  @include sm() {
-    padding-top: 2em;
-  }
-
-  @include md() {
-    padding-top: 2em;
-  }
-
-  @include lg() {
-    padding-left: 2em;
-    padding-right: 2em;
-  }
-  
-  @include xl() {
-    padding-left: 2em;
-    padding-right: 2em;
-  }
+.header__branding {
+  color: black;
+  font-weight: 700;
+  text-decoration: none;
+  z-index: 99;
 }
 
 footer {
   width: 100%;
   margin-top: 4em;
   margin-bottom: 2em;
+  font-size: 12px;
   text-align: center;
+}
+
+// -- typography -- //
+.type {
+  &__alignCenter {
+    text-align: center;
+  }
+
+  &__extraSpace {
+    box-sizing: border-box;
+
+    @include create-mq(0, $grid__bp-md) {
+      padding: 2em 1em 0 1em;
+    }
+
+    @include create-mq($grid__bp-md + 1, 0) {
+      padding: 1em 2em 0 2em;
+    }
+  }
+
+  &__small {
+    font-size: 0.75em;
+  }
+}
+
+// -- colors -- //
+.backgroundColor{
+  &--lightGrey {
+    background-color: #f4f4f4;
+  }
+}
+
+// -- Grid -- //
+@mixin create-column($modifier, $i, $columnWidth, $columnGutter) {
+  &__col#{$modifier}-#{$i} {
+    flex-basis: ( $columnWidth - $columnGutter ) * 1%;
+    margin-left: ($columnGutter / 2) * 1%;
+    margin-right: ($columnGutter / 2) * 1%;
+  }
+
+  &__col#{$modifier}-offset-#{$i} {
+    @debug $modifier $i $columnGutter $columnWidth;
+    margin-left: ($columnGutter / 2) + $columnWidth * 1% !important;
+  }
+}
+
+@mixin create-columns($modifier, $amount, $gutters, $breakpointMin, $breakpointMax) {
+  @include create-mq($breakpointMin, $breakpointMax) {
+    @for $i from 1 through $amount {
+      $columnWidth: ( 100 / ($amount / $i) );
+      $columnGutter: 0;
+
+      @if ($breakpointMax == 0) {
+        $columnGutter: ( ( $gutters / $breakpointMin ) * 100 );
+      } @else {
+        $columnGutter: ( ( $gutters / $breakpointMax ) * 100 );
+      }
+
+      @include create-column($modifier, $i, $columnWidth, $columnGutter);
+    }
+  }
+}
+
+.container {
+  max-width: ($grid__bp-lg * 1px) + ($grid__gut-lg * 1px);
+  margin-left: auto;
+  margin-right: auto;
+  
+  &--fluid {
+    margin-left: 0;
+    margin-right: 0;
+    max-width: 100%;
+  }
+
+  &--menuSpacer {
+    padding-top: 5.75em;
+  }
+  
+  &__row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    box-sizing: border-box;
+    width: 100%;
+
+    &--fillScreen {
+      min-height: 80vh;
+    }
+
+    &--alignCenter {
+      align-items: center;
+    }
+
+    @include create-mq(0, $grid__bp-xs) {
+      padding-left: ($grid__gut-xs) * 1px;
+      padding-right: ($grid__gut-xs) * 1px;
+    }
+
+    @include create-mq($grid__bp-xs + 1, $grid__bp-sm) {
+      padding-left: ($grid__gut-sm) * 1px;
+      padding-right: ($grid__gut-sm) * 1px;
+    }
+
+    @include create-mq($grid__bp-sm + 1, $grid__bp-md) {
+      padding-left: ($grid__gut-md) * 1px;
+      padding-right: ($grid__gut-md) * 1px;
+    }
+
+    @include create-mq($grid__bp-md + 1, $grid__bp-lg) {
+      padding-left: ($grid__gut-lg) * 1px;
+      padding-right: ($grid__gut-lg) * 1px;
+    }
+
+    @include create-mq($grid__bp-lg + 1, 0) {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+
+  &__col--bottomMargin {
+    margin-bottom: 2em;
+  }
+
+  &__col--dancing {
+    @include create-mq(0, $grid__bp-xs) {
+      margin-bottom: 1em;
+    }
+  }
+
+  &__col--dancing:nth-of-type(2n) {
+    @include create-mq($grid__bp-xs + 1, 0) {
+      margin-top: 2em;
+    }
+  }
+
+
+  @include create-columns("-xs", $grid__col-xs, $grid__gut-xs, 0, $grid__bp-xs);
+  @include create-columns("-sm", $grid__col-sm, $grid__gut-sm, $grid__bp-xs + 1, $grid__bp-sm);
+  @include create-columns("-md", $grid__col-md, $grid__gut-md, $grid__bp-sm + 1, $grid__bp-md);
+  @include create-columns("-lg", $grid__col-lg, $grid__gut-lg, $grid__bp-md + 1, 0);
+}
+
+.article {
+  &__chunk {
+    padding-top: 2em;
+    padding-bottom: 2em;
+  }
+}
+
+// -- components -- //
+.jumbotron {
+  padding-bottom: 2em;
+}
+
+.hero__meta {
+  padding-top: 4em;
+  padding-bottom: 4em;
 }
