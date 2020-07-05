@@ -5,12 +5,13 @@ const FloatingImageGroup = ({ render }) => {
   if (render.images.length === 1) {
     return (
       <div className="container article__chunk">
-        <div className="container__row">
+        <div className="container__row article__imageGroup">
           <div className="
+            container__col--floating
             container__col-xs-4
             container__col-sm-6
             container__col-sm-offset-1
-            container__col-md-12
+            container__col-md-8
             container__col-lg-12
           " >
             {render.images.map(image => (
@@ -23,13 +24,14 @@ const FloatingImageGroup = ({ render }) => {
   } else if (render.images.length !== 1 && !(render.images.length % 2)) {
     return (
       <div className="container article__chunk">
-        <div className="container__row">
+        <div className="container__row article__imageGroup">
           {render.images.map((image, i) => (
             <div className={`
+            container__col--floating
             container__col-xs-4
             container__col-sm-6
             container__col-sm-offset-1
-            container__col-md-
+            container__col-md-6
             container__col-md-offset-1
             container__col-lg-6
           `} >
@@ -43,9 +45,10 @@ const FloatingImageGroup = ({ render }) => {
   } else if (render.images.length !== 1 && render.images.length % 2) {
     return (
       <div className="container article__chunk">
-        <div className="container__row">
+        <div className="container__row article__imageGroup">
           {render.images.map((image, i) => (
             <div key={JSON.stringify(image.fluid.base64)} className={`
+              container__col--floating
               container__col-xs-4
               container__col-sm-6
               container__col-sm-offset-1

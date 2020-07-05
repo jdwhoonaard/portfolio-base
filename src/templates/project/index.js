@@ -45,7 +45,8 @@ const ProjectTemplate = ({ data: { contentfulTemplateProject } }) => {
       <div className="container container--fluid article">
         <Jumbotron data={headerData} cover={pageData.image.fluid} />
         {pageData.contentList.map(item => {
-          const type = item.internal.type;
+          console.log(item)
+          const type = item.__typename;
 
           if (type === 'ContentfulContentTextLeft') {
             return <Text key={item.id} render={item} modifier="left" />
@@ -53,9 +54,9 @@ const ProjectTemplate = ({ data: { contentfulTemplateProject } }) => {
             return <Text key={item.id} render={item} modifier="right" />
           } else if (type === 'ContentfulContentTextCentered') {
             return <Text key={item.id} render={item} modifier="centered" />
-          } else if (type === 'ContentfulContentImageGroup') {
+          } else if (type === 'ContentfulContentImagegroup') {
             return <ImageGroup key={item.id} render={item} />
-          } else if (type === 'ContentfulContentFloatingImageGroup') {
+          } else if (type === 'ContentfulContentImagegroupFloating') {
             return <FloatingImageGroup key={item.id} render={item} />
           } else if (type === 'ContentfulContentVideo') {
             return <Video key={item.src} src={item.src} />
@@ -127,7 +128,7 @@ export const query = graphql`
             }
           }
         }
-        ... on ContentfulContentImageGroup {
+        ... on ContentfulContentImagegroup {
           id
           internal {
             type
@@ -138,7 +139,7 @@ export const query = graphql`
             }
           }
         }
-        ... on ContentfulContentFloatingImageGroup {
+        ... on ContentfulContentImagegroupFloating {
           id
           internal {
             type

@@ -11,7 +11,8 @@ export default ({ render, modifier }) => {
           <div className="
             type__alignCenter
             container__col-xs-4
-            container__col-sm-4
+            container__col-sm-6
+            container__col-sm-offset-1
             container__col-md-6
             container__col-md-offset-1
             container__col-lg-6

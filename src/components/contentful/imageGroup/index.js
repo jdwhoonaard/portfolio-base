@@ -5,7 +5,7 @@ const ImageGroup = ({ render }) => {
   if (render.images.length === 1) {
     return (
       <div className="container article__chunk">
-        <div className="container__row">
+        <div className="container__row article__imageGroup">
           <div className="
             container__col-xs-4
             container__col-sm-6
@@ -23,7 +23,7 @@ const ImageGroup = ({ render }) => {
   } else if (render.images.length !== 1 && !(render.images.length % 2)) {
     return (
       <div className="container article__chunk">
-        <div className="container__row">
+        <div className="container__row article__imageGroup">
           {render.images.map((image, i) => (
             <div className={`
             container__col-xs-4
@@ -43,7 +43,7 @@ const ImageGroup = ({ render }) => {
   } else if (render.images.length !== 1 && render.images.length % 2) {
     return (
       <div className="container article__chunk">
-        <div className="container__row">
+        <div className="container__row article__imageGroup">
           {render.images.map((image, i) => (
             <div key={JSON.stringify(image.fluid.base64)} className={`
               container__col-xs-4
