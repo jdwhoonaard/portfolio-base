@@ -1,21 +1,19 @@
 import React from "react";
 import './index.scss';
 
-export default ({ src }) => {
+const Video = ({ src }) => {
   return (
-    <div className="grid__row fixed contentful__imageGroup">
-      <div className="contentful__video sm-4 md-offset-1 md-6 lg-offset-1 lg-10 xl-offset-2 xl-8" >
-        <iframe
-          title="video"
-          width="560"
-          height="315"
-          src={src}
-          frameBorder="0"
-          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
-        >
-        </iframe>
-      </div>
-    </div>
+    <iframe
+      title="video"
+      width="100%"
+      height="360"
+      src={src}
+      frameBorder="0"
+      allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+      allowFullScreen
+    >
+    </iframe>
   )
 }
+
+export default Video;

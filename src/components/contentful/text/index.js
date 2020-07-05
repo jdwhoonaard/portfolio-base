@@ -1,40 +1,99 @@
 import React from "react";
 import Img from 'gatsby-image';
+import Video from '../video'
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
-import './index.scss'
 
 export default ({ render, modifier }) => {
   if (modifier === 'centered') {
     return (
-      <div className="grid__row fixed contentful__text">
-        <div className="sm-4 md-offset-1 md-6 lg-offset-3 lg-6 xl-offset-3 xl-6 contentful__text__centered" >
-          {documentToReactComponents(render.body.json)}
+      <div className="container article__chunk">
+        <div className="container__row">
+          <div className="
+            type__alignCenter
+            container__col-xs-4
+            container__col-sm-6
+            container__col-sm-offset-1
+            container__col-md-6
+            container__col-md-offset-1
+            container__col-lg-6
+            container__col-lg-offset-3
+          " >
+            {documentToReactComponents(render.body.json)}
+          </div>
         </div>
       </div>
     )
   } else if (modifier === 'left') {
     return (
-      <div className="grid__row fixed contentful__text">
-        <div className="sm-4 md-offset-1 md-6 lg-offset-1 lg-5 xl-offset-1 xl-5" >
-          {documentToReactComponents(render.body.json)}
-        </div>
-        {render.image ? (
-          <div className={`sm-4 md-offset-1 md-6 lg-6 xl-6`} >
-            <Img fluid={render.image.fluid} className="contentful__text__image" />
+      <div className="container article__chunk">
+        <div className="container__row">
+          <div className="
+            container__col-xs-4
+            container__col-sm-6
+            container__col-sm-offset-1
+            container__col-md-6
+            container__col-md-offset-1
+            container__col-lg-6
+          " >
+            {documentToReactComponents(render.body.json)}
           </div>
-        ) : null}
+          <div className="
+              container__col-xs-4
+              container__col-sm-6
+              container__col-sm-offset-1
+              container__col-md-6
+              container__col-md-offset-1
+              container__col-lg-6
+            " >
+            {
+              render.image
+                ? <Img fluid={render.image.fluid} className="" />
+                : null
+            }{
+              render.video !== null && render.video !== undefined
+                ? <Video src={render.video} />
+                : null
+            }
+          </div>
+        </div>
       </div>
     )
   } else if (modifier === 'right') {
     return (
-      <div className="grid__row fixed contentful__text">
-        {render.image ? (
-          <div className="sm-4 md-offset-1 md-6 lg-6 xl-6" >
-            <Img fluid={render.image.fluid} className="contentful__text__image" />
+      <div className="container article__chunk">
+        <div className="container__row contentful__text">
+          <div className="
+              container__col-xs-4
+              container__col-sm-6
+              container__col-sm-offset-1
+              container__col-md-6
+              container__col-md-offset-1
+              container__col-lg-6
+            " >
+            {
+              render.image
+                ? <Img fluid={render.image.fluid} className="" />
+                : null
+            }{
+              render.video !== null && render.video !== undefined
+                ? <Video src={render.video} />
+                : null
+            }
           </div>
-        ) : null}
-        <div className={`sm-4 md-offset-1 md-6 lg-5 xl-5 ${render.image ? '' : 'lg-offset-6 xl-offset-6'} text__right`} >
-          {documentToReactComponents(render.body.json)}
+          <div className={`
+            text__right
+            container__col-xs-4
+            container__col-sm-6
+            container__col-sm-offset-1
+            container__col-md-6
+            container__col-md-offset-1
+            container__col-lg-6
+            ${render.image
+              ? ''
+              : 'container__col-lg-offset-6'}
+          `} >
+            {documentToReactComponents(render.body.json)}
+          </div>
         </div>
       </div>
     )

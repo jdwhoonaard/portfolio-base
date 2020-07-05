@@ -1,12 +1,13 @@
 import React from "react";
 import Img from 'gatsby-image';
 
-const ImageGroup = ({ render }) => {
+const FloatingImageGroup = ({ render }) => {
   if (render.images.length === 1) {
     return (
       <div className="container article__chunk">
         <div className="container__row article__imageGroup">
           <div className="
+            container__col--floating
             container__col-xs-4
             container__col-sm-6
             container__col-sm-offset-1
@@ -26,6 +27,7 @@ const ImageGroup = ({ render }) => {
         <div className="container__row article__imageGroup">
           {render.images.map((image, i) => (
             <div className={`
+            container__col--floating
             container__col-xs-4
             container__col-sm-6
             container__col-sm-offset-1
@@ -46,6 +48,7 @@ const ImageGroup = ({ render }) => {
         <div className="container__row article__imageGroup">
           {render.images.map((image, i) => (
             <div key={JSON.stringify(image.fluid.base64)} className={`
+              container__col--floating
               container__col-xs-4
               container__col-sm-6
               container__col-sm-offset-1
@@ -66,4 +69,4 @@ const ImageGroup = ({ render }) => {
   } else return 'what?'
 }
 
-export default ImageGroup;
+export default FloatingImageGroup;

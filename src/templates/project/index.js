@@ -1,13 +1,12 @@
 import React from "react";
 import { graphql } from 'gatsby'
 import { motion } from 'framer-motion';
-import Grid from "../../components/grid";
 import Jumbotron from "../../components/contentful/jumbotron";
 import Text from "../../components/contentful/text";
 import ImageGroup from "../../components/contentful/imageGroup";
+import FloatingImageGroup from "../../components/contentful/floatingImageGroup";
 import Video from "../../components/contentful/video"
 import SEO from "../../components/seo";
-import './index.scss'
 
 const ProjectTemplate = ({ data: { contentfulTemplateProject } }) => {
   const pageData = contentfulTemplateProject;
@@ -16,6 +15,8 @@ const ProjectTemplate = ({ data: { contentfulTemplateProject } }) => {
     image: pageData.image,
     title: pageData.title,
     subtitle: pageData.subtitle,
+    textColor: pageData.textColor,
+    backgroundColor: pageData.backgroundColor,
     tags: pageData.tags,
     date: pageData.createdAt,
     description: pageData.description,
@@ -41,10 +42,11 @@ const ProjectTemplate = ({ data: { contentfulTemplateProject } }) => {
       animate="visible"
       exit="hidden"
     >
-      <Grid className="fixed header__spacer project">
+      <div className="container container--fluid article">
         <Jumbotron data={headerData} cover={pageData.image.fluid} />
         {pageData.contentList.map(item => {
-          const type = item.internal.type;
+          console.log(item)
+          const type = item.__typename;
 
           if (type === 'ContentfulContentTextLeft') {
             return <Text key={item.id} render={item} modifier="left" />
@@ -52,13 +54,15 @@ const ProjectTemplate = ({ data: { contentfulTemplateProject } }) => {
             return <Text key={item.id} render={item} modifier="right" />
           } else if (type === 'ContentfulContentTextCentered') {
             return <Text key={item.id} render={item} modifier="centered" />
-          } else if (type === 'ContentfulContentImageGroup') {
+          } else if (type === 'ContentfulContentImagegroup') {
             return <ImageGroup key={item.id} render={item} />
+          } else if (type === 'ContentfulContentImagegroupFloating') {
+            return <FloatingImageGroup key={item.id} render={item} />
           } else if (type === 'ContentfulContentVideo') {
             return <Video key={item.src} src={item.src} />
           } else return null;
         })}
-      </Grid>
+      </div>
       <SEO title={pageData.title} />
     </motion.div >
   )
@@ -75,7 +79,10 @@ export const query = graphql`
           ...GatsbyContentfulFluid
         }
       }
+      textColor
+      backgroundColor
       tags
+      headerColor
       description {
         json
       }
@@ -105,6 +112,7 @@ export const query = graphql`
               ...GatsbyContentfulFluid
             }
           }
+          video
         }
         ... on ContentfulContentTextRight {
           id
@@ -120,7 +128,18 @@ export const query = graphql`
             }
           }
         }
-        ... on ContentfulContentImageGroup {
+        ... on ContentfulContentImagegroup {
+          id
+          internal {
+            type
+          }
+          images {
+            fluid(maxWidth: 960){
+              ...GatsbyContentfulFluid
+            }
+          }
+        }
+        ... on ContentfulContentImagegroupFloating {
           id
           internal {
             type

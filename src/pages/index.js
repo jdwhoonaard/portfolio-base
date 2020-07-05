@@ -5,7 +5,6 @@ import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 import { BLOCKS } from '@contentful/rich-text-types';
 
 import SEO from "../components/seo"
-import Grid from "../components/grid"
 import Card from "../components/card"
 
 const options = {
@@ -36,19 +35,32 @@ const IndexPage = ({ data }) => {
       exit="hidden"
     >
       <SEO title="Home" />
-      <Grid className="fixed header__spacer">
-        <div className="grid__row">
-          <div className="sm-4 md-8 lg-12 xl-12">
+      <div className="container container--menuSpacer">
+        <div className="container__row">
+          <div className="
+            container__col--bottomMargin
+            container__col-xs-4
+            container__col-sm-8
+            container__col-md-8
+            container__col-lg-12
+          " >
             {documentToReactComponents(data.contentfulPageIndex.body.json, options)}
           </div>
         </div>
 
-        <div className="grid__row dancing__cards">
+        <div className="container__row">
           {data.contentfulPageIndex.cards.map((card) => {
 
             if (card.internal.type === 'ContentfulPageAbout') {
               return (
-                <div key="aboutme" className="gridCard__outer sm-4 md-4 lg-3 xl-3">
+                <div key="aboutme" className="
+                  container__col--dancing
+                  container__col-xs-4
+                  container__col-sm-4
+                  container__col-md-4
+                  container__col-lg-3
+                  container__col-xl-3
+                " >
                   <Link to={`/about/`}>
                     <Card data={card} />
                   </Link>
@@ -56,7 +68,14 @@ const IndexPage = ({ data }) => {
               )
             } else if (card.internal.type === 'ContentfulTemplateProject') {
               return (
-                <div key={card.url} className="gridCard__outer sm-4 md-4 lg-3 xl-3">
+                <div key={card.url} className="
+                  container__col--dancing
+                  container__col-xs-4
+                  container__col-sm-4
+                  container__col-md-4
+                  container__col-lg-3
+                  container__col-xl-3
+                " >
                   <Link to={`/${card.url}/`}>
                     <Card data={card} />
                   </Link>
@@ -65,7 +84,7 @@ const IndexPage = ({ data }) => {
             } else return null;
           })}
         </div>
-      </Grid>
+      </div>
     </motion.div >
   )
 }
@@ -97,6 +116,8 @@ export const query = graphql`
           url
           title
           subtitle
+          textColor
+          backgroundColor
           tags
           image {
             fluid(maxWidth: 320) {
