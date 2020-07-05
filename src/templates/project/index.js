@@ -45,7 +45,6 @@ const ProjectTemplate = ({ data: { contentfulTemplateProject } }) => {
       <div className="container container--fluid article">
         <Jumbotron data={headerData} cover={pageData.image.fluid} />
         {pageData.contentList.map(item => {
-          console.log(item)
           const type = item.__typename;
 
           if (type === 'ContentfulContentTextLeft') {
