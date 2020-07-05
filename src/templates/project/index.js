@@ -150,13 +150,6 @@ export const query = graphql`
             }
           }
         }
-        ... on ContentfulContentVideo {
-          id
-          internal {
-            type
-          }
-          src
-        }
       }
     }
   }
